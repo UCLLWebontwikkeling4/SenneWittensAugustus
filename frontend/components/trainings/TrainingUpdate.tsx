@@ -25,7 +25,7 @@ const TrainingUpdateForm: React.FC = () => {
         <div className="d-flex justify-content-around align-items-center bg-white mx-5 px-0 mt-5 shadow-lg shadow-inset p-3 mb-5 bg-white rounded text-center ">
 
             <form onSubmit={handleSubmit}>
-                <h2>Add a new training</h2>
+                <h2>Update training</h2>
             <h4 className="mb-4">Please fill in the form below:</h4> 
                 <label className="form-label">Title</label>
                 <input
@@ -72,7 +72,7 @@ const TrainingUpdateForm: React.FC = () => {
     
                 
                 <button className="btn btn-primary btn-block mb-3 mt-3">
-                <span className="button__text">Add Training</span>
+                <span className="button__text">Update Training</span>
 					<i className="button__icon fas fa-chevron-right"></i>
                 </button>
 

@@ -15,7 +15,7 @@ const deleteTraining = async (id: number) => {
     console.log("Training deleted with id {}", id);
 };
 const updateTraining = async (training: Training) => {
-    await TrainingService.updateTraining(training.avg_heartrate, training.avg_speed, training.date, training.id, training.km, training.likes, training.title);
+    await TrainingService.updateTraining(training.title, training.date, training.km, training.avg_heartrate, training.avg_speed, training.likes, sessionStorage.getItem('id') );
     console.log("Training updates with id {}", training.id);
 };
 
@@ -61,7 +61,9 @@ export const TrainingOverviewTable : React.FC<Props> =({trainings}: Props) => {
                                     <td>{training.likes}</td>  
                                     {/* put delete button */}
                                     <button onClick={() => deleteTraining(training.id) } >Delete</button>
-                                    <button onClick={() => updateTraining(training) } >Update</button>
+                                    <button onClick={() => updateTraining(training) } ><Link href="/updatetraining">
+                      Update
+                    </Link></button>
                                          
 
                                 </tr>

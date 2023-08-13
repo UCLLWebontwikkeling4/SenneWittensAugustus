@@ -70,9 +70,9 @@ const deleteTraining = (id) => {
     console.log(err)
 }
 }
-const updateTraining = (title, date, km, avg_heartrate, avg_speed, userid, likes) => {
+const updateTraining = (title, date, km, avg_heartrate, avg_speed, likes, userid) => {
     try {
-        fetch(process.env.NEXT_PUBLIC_API_URL + '/training/update', {
+        fetch(process.env.NEXT_PUBLIC_API_URL + `/training/update`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
