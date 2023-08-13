@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Bike" ALTER COLUMN "weight" SET DATA TYPE DECIMAL;

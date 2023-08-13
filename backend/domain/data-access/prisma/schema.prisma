@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int      @id(map: "user_pk") @unique(map: "user_id_uindex") @default(autoincrement())
+  lastname      String?  @db.VarChar(30)
+  firstname     String   @db.VarChar(30)
+  birth_date    DateTime @default(dbgenerated("date(now())")) @db.Date
+  password      String   @db.VarChar(30)
+  country       String?  @db.VarChar(30)
+  city          String?  @db.VarChar(30)
+  type_of_rider String   @db.VarChar(30)
+  bikes         Bike[]
+  trainings     Training[]
+  races         Race[] 
+  comments TrainingComment[]
+}
+
+model Bike {
+  id              Int      @id(map: "bike_pk") @unique(map: "bike_id_uindex") @default(autoincrement())
+  brand           String   @db.VarChar(30)
+  type            String   @db.VarChar(30)
+  shifting_system String?  @db.VarChar(30)
+  weight          Decimal? @db.Decimal
+  user            User @relation(fields: [userid], references: [id])
+  userid          Int 
+}
+
+model Training {
+  id            Int @id(map: "training_pk") @unique(map: "training_id_uindex") @default(autoincrement())
+  date DateTime @default(dbgenerated("date(now())")) @db.Date
+  title         String  @db.VarChar(60)
+  km            Int 
+  avg_heartrate Int
+  avg_speed     Int
+  user          User @relation(fields: [userid], references: [id])
+  userid        Int
+  likes         Int
+  comments      TrainingComment[]
+}
+
+model Race{
+    id   Int @id(map: "race_pk") @unique(map: "race_id_uindex") @default(autoincrement())
+    date DateTime @default(dbgenerated("date(now())")) @db.Date
+    km   Int
+    type String @db.VarChar(30)
+    age_category String @db.VarChar(30)
+    city String @db.VarChar(30)
+    country String @db.VarChar(30)
+    street String @db.VarChar(30)
+    number Int
+    users User[] 
+}
+
+model TrainingComment{
+      id   Int @id(map: "trainingComment_pk") @unique(map: "trainingComment_id_uindex") @default(autoincrement())
+      text String @db.VarChar(30)
+      date DateTime @default(dbgenerated("date(now())")) @db.Date
+      training Training @relation(fields: [trainingid], references: [id])
+      trainingid Int 
+      user User @relation(fields: [userid], references: [id])
+      userid Int
+}
+
+ 
+
+
+
+
+
